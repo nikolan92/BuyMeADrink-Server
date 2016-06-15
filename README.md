@@ -14,7 +14,7 @@ Default response for all routes if something goes wrong on server
 	Method POST
 	Request body -> JSONdata user
     
-   ### Possible response: 
+##### Possible response: 
     
 ```sh
 {"Success":true,"Data":user in JSON} status:201 
@@ -41,7 +41,7 @@ Default response for all routes if something goes wrong on server
 	Method POST
 	Request body -> JSONdata {"email":"email","password"}
 	
- ### Possible response: 
+ ##### Possible response: 
     
 ```sh
 {"Success":true,"Data":user in JSON} status:200
