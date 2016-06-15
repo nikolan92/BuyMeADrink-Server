@@ -1,0 +1,2 @@
+# BuyMeADrink-Server
+Student project
