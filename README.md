@@ -24,7 +24,8 @@ Default response for all routes if something goes wrong on server
 /api/user/id
 
 	Method GET
-	Possible response: 
+	
+#####Possible response: 
 ```sh    
 {"Success":true,"Data":user in JSON} status:200
 {"Success":false,"Error":"User doesn't exist."}	status:200
@@ -41,7 +42,7 @@ Default response for all routes if something goes wrong on server
 	Method POST
 	Request body -> JSONdata {"email":"email","password"}
 	
- ##### Possible response: 
+##### Possible response: 
     
 ```sh
 {"Success":true,"Data":user in JSON} status:200
