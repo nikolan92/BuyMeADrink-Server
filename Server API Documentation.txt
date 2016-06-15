@@ -9,8 +9,18 @@ Default response for all routes if something goes wrong on server
 	Possible response: 
 		1. {"Success":true,"Data":user in JSON} status:201
 		2. {"Success":false,"Error":"This email already exist!\nTry with other email."}	status:200
+		3. {"Success":false,"Error":"Check request body."} status:200
 		
 Description:Add new user in mongo database
+---------------------------------------------------------------------------------------------
+/api/user
+	Method PUT
+	Request body -> JSONdata user
+	Possible response: 
+		1. {"Success":true,"Data":user in JSON} status:201
+		2. {"Success":false,"Error":"Check request body."} status:200
+		
+Description:Update user in mongo database
 ---------------------------------------------------------------------------------------------
 /api/user/id
 	Method GET

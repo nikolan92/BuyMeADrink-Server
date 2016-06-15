@@ -8,16 +8,18 @@ require_once("../DataLayer/UserHandler.php");
 $app->post("/api/user",function (Request $request, Response $response) {
 
     $user =(array) json_decode($request->getBody());
-    var_dump($user);
+    if(!empty($user)) {
+        $userHandler = new UserHandler();
 
-    $userHandler = new UserHandler();
+        $message = $userHandler->saveUser($user);
 
-    $message = $userHandler->saveUser($user);
-
-    if($message["Success"])
-        return $response->withJSON($message,201);
-    else
-        return $response->withJSON($message);
+        if ($message["Success"])
+            return $response->withJSON($message, 201);
+        else
+            return $response->withJSON($message);
+    }else{
+        return $response->withJSON(Message::ErrorMessage("Check request body."));
+    }
 });
 //This route return user with specific id
 $app->get("/api/user/{id}",function (Request $request, Response $response) {
@@ -34,18 +36,17 @@ $app->get("/api/user/{id}",function (Request $request, Response $response) {
 $app->put("/api/user",function (Request $request, Response $response) {
 
     $user = (array)json_decode($request->getBody());
+    if(empty($user)){
+        $userHandler = new UserHandler();
 
-    $userHandler = new UserHandler();
+        $message = $userHandler->updateUser($user);
 
-    $message = $userHandler->updateUser($user);
-
-    if($message["Success"]){
         return $response->withJSON($message);
+
     }else{
-        return $response->withJSON($message);
+        return $response->withJSON(Message::ErrorMessage("Check request body."));
     }
 });
-
 
 
 

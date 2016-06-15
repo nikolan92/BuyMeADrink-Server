@@ -22,14 +22,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/user.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="52" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.9255919">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="e#6#62#0#PHP" expanded="true" />
-                <element signature="e#1324#2769#1#PHP" expanded="false" />
+                <element signature="e#1487#2932#1#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -65,10 +65,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserHandler.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserHandler.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataLayer/UserHandler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40473506">
+            <state vertical-scroll-proportion="-19.870968">
               <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
               <folding />
             </state>
@@ -100,9 +100,9 @@
         <option value="$PROJECT_DIR$/DataLayer/DataObject/User.php" />
         <option value="$PROJECT_DIR$/DataLayer/Message.php" />
         <option value="$PROJECT_DIR$/public/index.php" />
-        <option value="$PROJECT_DIR$/routes/user.php" />
         <option value="$PROJECT_DIR$/routes/login.php" />
         <option value="$PROJECT_DIR$/DataLayer/UserHandler.php" />
+        <option value="$PROJECT_DIR$/routes/user.php" />
       </list>
     </option>
   </component>
@@ -278,7 +278,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.122395836" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -313,7 +313,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -324,7 +324,7 @@
           <caret line="35" column="52" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="52" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
-            <element signature="e#1324#2769#1#PHP" expanded="false" />
+            <element signature="e#1487#2932#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -375,7 +375,7 @@
           <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
-            <element signature="e#1324#2769#1#PHP" expanded="false" />
+            <element signature="e#1487#2932#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -416,7 +416,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
-            <element signature="e#1324#2769#1#PHP" expanded="false" />
+            <element signature="e#1487#2932#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -465,7 +465,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
-            <element signature="e#1324#2769#1#PHP" expanded="false" />
+            <element signature="e#1487#2932#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -497,6 +497,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.4838705">
           <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -504,6 +505,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-28.387096">
           <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -511,6 +513,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -680,17 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="52" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="52" />
-          <folding>
-            <element signature="e#6#62#0#PHP" expanded="true" />
-            <element signature="e#1324#2769#1#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -701,9 +693,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataLayer/UserHandler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40473506">
+        <state vertical-scroll-proportion="-19.870968">
           <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9255919">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#62#0#PHP" expanded="true" />
+            <element signature="e#1487#2932#1#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
