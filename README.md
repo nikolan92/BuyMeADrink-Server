@@ -6,7 +6,7 @@ Student project
 
 Default response for all routes if something goes wrong on server
 ```sh
-	{"Success":false,"Error":"Something went wrong,try again later."} status:500
+{"Success":false,"Error":"Something went wrong,try again later."} status:500
 ```
 
 /api/user
@@ -44,8 +44,8 @@ Default response for all routes if something goes wrong on server
  ### Possible response: 
     
 ```sh
-		 {"Success":true,"Data":user in JSON} status:200
-		 {"Success":false,"Error":"Wrong email or password!"}	status:200
-		 {"Success":false,"Error":"Wrong request check request body"}	status:200
+{"Success":true,"Data":user in JSON} status:200
+{"Success":false,"Error":"Wrong email or password!"}	status:200
+{"Success":false,"Error":"Wrong request check request body"}	status:200
 ```
 ##### Description: Log in user if is everything OK Note:Request body must be as above exemple.
