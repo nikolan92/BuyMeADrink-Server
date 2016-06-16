@@ -1,6 +1,7 @@
 <?php
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Slim\Http\Stream;
 
 require_once("../DataLayer/UserHandler.php");
 
@@ -46,6 +47,24 @@ $app->put("/api/user",function (Request $request, Response $response) {
     }else{
         return $response->withJSON(Message::ErrorMessage("Check request body."));
     }
+});
+
+$app->get("/api/user/image/{id}",function (Request $request, Response $response) {
+
+    $id = $request->getAttribute("id");
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    $imageUrl = $root . "/images/users/" . $id;
+    //echo $imageUrl;
+    $body = new Stream($imageUrl);
+
+//    $newResponse = (new Response())
+//        ->withStatus(200, 'OK')
+//        ->withHeader('Content-Type', 'image/jpeg')
+//        ->withHeader('Content-Length', filesize($image))
+//        ->withBody($body);
+
+    //return $newResponse;
+
 });
 
 

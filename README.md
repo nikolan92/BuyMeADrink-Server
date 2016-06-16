@@ -54,7 +54,7 @@ Default response for all routes if something goes wrong on server
 /api/login
 
 	Method POST
-	Request body -> JSONdata {"email":"email","password"}
+	Request body -> JSONdata {"email":"user email","password":"secret"}
 	
 ##### Possible response: 
     
@@ -64,4 +64,3 @@ Default response for all routes if something goes wrong on server
 {"Success":false,"Error":"Wrong request check request body"}	status:200
 ```
 ##### Description: Log in user if is everything OK Note:Request body must be as above exemple.
->>>>>>> 49d95dfd4e92d285103ec9899b71a899519d7237
