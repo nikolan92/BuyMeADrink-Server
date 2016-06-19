@@ -44,7 +44,7 @@ class UserHandler {
         $retval = $this->collection->findAndModify($query,$user);
 
         if($retval !=null){
-            return Message::SuccessMessage("User successfuly updated.");
+            return Message::SuccessMessage("Profile is updated.");
         }else{
             return Message::ErrorMessage("User doesn't exist.");
         }

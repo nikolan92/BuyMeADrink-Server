@@ -37,36 +37,35 @@ $app->get("/api/user/{id}",function (Request $request, Response $response) {
 $app->put("/api/user",function (Request $request, Response $response) {
 
     $user = (array)json_decode($request->getBody());
-    if(empty($user)){
+    if(!empty($user)){
         $userHandler = new UserHandler();
 
-        $message = $userHandler->updateUser($user);
+        //saving image on server file sistem
+        if(isset($user["image_base64"]))
+        {
 
+            $base64String = $user["image_base64"];
+            $decodedImage = base64_decode("$base64String");
+
+            $userId = $user["_id"];
+
+            $root = $_SERVER['DOCUMENT_ROOT'];
+            $imagePath = $root . "/images/users/". $userId .".jpg";
+
+            //Save image on file system
+            file_put_contents($imagePath,$decodedImage);
+            //remove field
+            unset($user["image_base64"]);
+        }
+
+        $message = $userHandler->updateUser($user);
         return $response->withJSON($message);
 
     }else{
         return $response->withJSON(Message::ErrorMessage("Check request body."));
     }
-});
-
-$app->get("/api/user/image/{id}",function (Request $request, Response $response) {
-
-    $id = $request->getAttribute("id");
-    $root = $_SERVER['DOCUMENT_ROOT'];
-    $imageUrl = $root . "/images/users/" . $id;
-    //echo $imageUrl;
-    $body = new Stream($imageUrl);
-
-//    $newResponse = (new Response())
-//        ->withStatus(200, 'OK')
-//        ->withHeader('Content-Type', 'image/jpeg')
-//        ->withHeader('Content-Length', filesize($image))
-//        ->withBody($body);
-
-    //return $newResponse;
 
 });
-
 
 
 $app->post('/api/test', function (Request $request, Response $response) {
