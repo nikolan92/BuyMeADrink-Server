@@ -63,7 +63,7 @@ Default response for all routes if something goes wrong on server
 	
 ##### Possible response: 
 ```sh
-{"Success":true,"Data":user in JSON} status:201
+{"Success":true,"Data":user in JSON} status:200
 {"Success":false,"Error":"Check request body."} status:200
 ```		
 ##### Description: Update user in mongo database
