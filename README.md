@@ -12,29 +12,16 @@ Default response for all routes if something goes wrong on server
 
 /api/user
 
-	Method POST
-	Request body -> JSONdata user
-    
-##### Possible response: 
-    
-```sh
-{"Success":true,"Data":user in JSON} status:201 
-{"Success":false,"Error":"This email already exist!\nTry with other email."}	status:200
-```
-##### Description: Add new user in mongo database
-
-/api/user
-
-	Method PUT
-	Request body -> JSONdata user
+	Method GET
 	
-##### Possible response: 
-```sh
-{"Success":true,"Data":user in JSON} status:201
-{"Success":false,"Error":"Check request body."} status:200
-```		
-##### Description: Update user in mongo database
+#####Possible response: 
+```sh    
+{"Success":true,"Data":users in JSONArray} status:200
+{"Success":false,"Error":"No users in data base."}	status:200
+```
 
+##### Description: Return all users.
+ 
 /api/user/id
 
 	Method GET
@@ -49,6 +36,37 @@ Default response for all routes if something goes wrong on server
 ```sh
 {"Success":false,"Error":"Something went wrong,try again later."} 
 ```
+
+
+
+/api/user
+
+	Method POST
+	Request body -> JSONdata user
+    
+##### Possible response: 
+    
+```sh
+{"Success":true,"Data":user in JSON} status:201 
+{"Success":false,"Error":"This email already exist!\nTry with other email."}	status:200
+```
+##### Description: Add new user in mongo database
+
+/api/user
+
+	Method PUT
+	Request body -> Possible request:
+```sh
+{UserInJSON}
+{UserInJSON + "image_base64":"ds3432432rfsav3...."} inside UserInJSON Object
+```
+	
+##### Possible response: 
+```sh
+{"Success":true,"Data":user in JSON} status:201
+{"Success":false,"Error":"Check request body."} status:200
+```		
+##### Description: Update user in mongo database
 
 
 /api/login

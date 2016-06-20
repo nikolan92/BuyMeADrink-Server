@@ -26,6 +26,20 @@ class UserHandler {
             return Message::SuccessMessage($user);
         }
     }
+    public function getAllUsers(){
+        $cursor = $this->collection->find();
+        if($cursor == null)
+            return Message::ErrorMessage("No users in data base.");
+
+        $cursor->sort(array("rating"=>1));
+
+        $users = array();
+        foreach($cursor as $doc){
+            $doc["_id"]= (string)$doc["_id"];
+            array_push($users,$doc);
+        }
+        return Message::SuccessMessage($users);
+    }
     public function getUserWithSpecificID($id)
     {
         $query = array("_id" => new MongoId($id));

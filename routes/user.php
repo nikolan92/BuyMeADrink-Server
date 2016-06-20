@@ -5,6 +5,26 @@ use Slim\Http\Stream;
 
 require_once("../DataLayer/UserHandler.php");
 
+//This route return user with specific id
+$app->get("/api/user",function (Request $request, Response $response) {
+
+    $userHandler = new UserHandler();
+
+    $message = $userHandler->getAllUsers();
+
+    return $response->withJSON($message);
+});
+//This route return user with specific id
+$app->get("/api/user/{id}",function (Request $request, Response $response) {
+
+    $id = $request->getAttribute("id");
+
+    $userHandler = new UserHandler();
+
+    $message = $userHandler->getUserWithSpecificID($id);
+
+    return $response->withJSON($message);
+});
 //Route for new user expect json data with user
 $app->post("/api/user",function (Request $request, Response $response) {
 
@@ -22,17 +42,7 @@ $app->post("/api/user",function (Request $request, Response $response) {
         return $response->withJSON(Message::ErrorMessage("Check request body."));
     }
 });
-//This route return user with specific id
-$app->get("/api/user/{id}",function (Request $request, Response $response) {
 
-    $id = $request->getAttribute("id");
-
-    $userHandler = new UserHandler();
-
-    $message = $userHandler->getUserWithSpecificID($id);
-
-    return $response->withJSON($message);
-});
 //This route update existing user if is id correct
 $app->put("/api/user",function (Request $request, Response $response) {
 
