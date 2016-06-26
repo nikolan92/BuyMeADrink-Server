@@ -8,6 +8,8 @@ require '../vendor/autoload.php';
 //Custom errorHandler for all internal error
 $c['errorHandler'] = function ($c) {
     return function ($request, $response, $exception) use ($c) {
+        var_dump($exception);
+
         return $c['response']->withStatus(500)->withJSON(Message::ErrorMessage("Something went wrong,try again later."));
     };
 };

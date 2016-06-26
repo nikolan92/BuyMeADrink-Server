@@ -82,3 +82,15 @@ Default response for all routes if something goes wrong on server
 {"Success":false,"Error":"Wrong request check request body"}	status:200
 ```
 ##### Description: Log in user if is everything OK Note:Request body must be as above exemple.
+
+/api/updateLocation
+
+	Method POST
+	Request body -> JSONdata {"user_id":"555","lat":32.3,"lng":43.2,range:55,"friends":["3213213213213123211","3213213213213123211"]}
+##### Possible response: 
+
+```json {"Success":true,"Data":{"friends_location":[{"lat":43.3217417,"lng":21.8976607},{"lat":43.3217417,"lng":21.8976607}],"friends_in_nearby":["57672b82e39c63d81e00002a","576720bee39c63d81e000029"],"questions_in_nearby":[]}} status:200
+
+{"Success":false,"Error":"Wrong request check request body"}	status:200
+```	
+##### Description:Update own location on server,server wiil return locations for all friends_ids and add .
