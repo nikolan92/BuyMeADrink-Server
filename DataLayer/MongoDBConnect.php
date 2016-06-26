@@ -1,8 +1,7 @@
 <?php 
 
-class Connect
+class MongoDBConnect
 {
-
 	private $connection_string = "mongodb://localhost:27017";
     private $con;
     private $db;
@@ -16,5 +15,4 @@ class Connect
     public function getUserCollection(){
     	return new MongoCollection($this->db,"user");
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-require_once("Connect.php");
+require_once("MongoDBConnect.php");
 require_once("Message.php");
 
 class UserHandler {
@@ -8,7 +8,7 @@ class UserHandler {
     private $collection;
     public function __construct()
     {
-        $db = new Connect();
+        $db = new MongoDBConnect();
         $this->collection = $db->getUserCollection();
     }
 

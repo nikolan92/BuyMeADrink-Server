@@ -17,6 +17,7 @@ $app = new \Slim\App($c);
 //
 require '../routes/user.php';
 require '../routes/login.php';
+require '../routes/updateLocation.php';
 
 $app->run();
 
