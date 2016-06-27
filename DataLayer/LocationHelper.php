@@ -29,7 +29,9 @@ class LocationHelper
 
             if($friend_location) {
                 //add location of this friend in friends_location array
-                array_push($friends_location, $friend_location);
+                $tmp = (array)$friend_location;
+                $tmp["_id"]= $friend;
+                array_push($friends_location, $tmp);
                 //if this friend is in black list do nothing,
                 //otherwise check distance between user location and friend location
                 if (!$this->checkForObjectInBlackList($user_id, $friend)) {

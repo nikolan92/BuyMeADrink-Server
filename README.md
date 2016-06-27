@@ -2,7 +2,7 @@
 
 Student project
 
-## Short Server Documentation about API
+## Short Server Documentation API
 
 
 Default response for all routes if something goes wrong on server
@@ -90,7 +90,7 @@ Default response for all routes if something goes wrong on server
 ##### Possible response: 
 
 ```sh
-{"Success":true,"Data":{"friends_location":[{"lat":43.3217417,"lng":21.8976607},{"lat":43.3217417,"lng":21.8976607}],"friends_in_nearby":["57672b82e39c63d81e00002a","576720bee39c63d81e000029"],"questions_in_nearby":[]}} status:200
+{"Success":true,"Data":{"friends_location":[{"lat":43.3217417,"lng":21.8976607,"_id":"57672b82e39c63d81e00002a"},{"lat":43.3217417,"lng":21.8976607,"_id":"576720bee39c63d81e000029"}],"friends_in_nearby":["57672b82e39c63d81e00002a","576720bee39c63d81e000029"],"questions_in_nearby":[]}} status:200
 {"Success":false,"Error":"Wrong request check request body"}	status:200
 
 ```	
