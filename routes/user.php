@@ -25,6 +25,17 @@ $app->get("/api/user/{id}",function (Request $request, Response $response) {
 
     return $response->withJSON($message);
 });
+//This route return all user friends
+$app->get("/api/user/friends/{id}",function (Request $request, Response $response) {
+
+    $id = $request->getAttribute("id");
+
+    $userHandler = new UserHandler();
+    $message = $userHandler->getUserFriends($id);
+
+    return $response->withJSON($message);
+});
+
 //Route for new user expect json data with user
 $app->post("/api/user",function (Request $request, Response $response) {
 

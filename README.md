@@ -30,14 +30,10 @@ Default response for all routes if something goes wrong on server
 ```sh    
 {"Success":true,"Data":user in JSON} status:200
 {"Success":false,"Error":"User doesn't exist."}	status:200
+{"Success":false,"Error":"User id is not valid!"} status:200
 ```
 
-##### Description: Return user with specific id Note:If id is not set correctly then response will be: 
-```sh
-{"Success":false,"Error":"Something went wrong,try again later."} 
-```
-
-
+##### Description:Return user with specific id. 
 
 /api/user
 
@@ -92,6 +88,17 @@ Default response for all routes if something goes wrong on server
 ```sh
 {"Success":true,"Data":{"friends_location":[{"lat":43.3217417,"lng":21.8976607,"_id":"57672b82e39c63d81e00002a"},{"lat":43.3217417,"lng":21.8976607,"_id":"576720bee39c63d81e000029"}],"friends_in_nearby":["57672b82e39c63d81e00002a","576720bee39c63d81e000029"],"questions_in_nearby":[]}} status:200
 {"Success":false,"Error":"Wrong request check request body"}	status:200
-
 ```	
 ##### Description:Update own location on server,server wiil return locations for all friends_ids and add .
+
+/api/user/friends/id
+
+	Method GET
+##### Possible response: 
+
+```sh
+{"Success":true,"Data":{[JSONdataUser,JSONdataUser,...]} status:200
+{"Success":false,"Error":"User doesn't exist."}	status:200
+{"Success":false,"Error":"User id is not valid!"} status:200
+```
+##### Description:Return user friends.

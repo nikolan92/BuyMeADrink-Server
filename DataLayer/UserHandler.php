@@ -42,12 +42,41 @@ class UserHandler {
     }
     public function getUserWithSpecificID($id)
     {
+        if(!MongoId::isValid($id))
+            return Message::ErrorMessage("User id is not valid!");
+
         $query = array("_id" => new MongoId($id));
 
         $user = $this->collection->findOne($query);
         if($user!=null){
             $user["_id"] = (string)$user["_id"];
             return Message::SuccessMessage($user);
+        }else{
+            return Message::ErrorMessage("User doesn't exist.");
+        }
+    }
+    public function getUserFriends($id){
+
+        if(!MongoId::isValid($id))
+            return Message::ErrorMessage("User id is not valid!");
+
+        $query = array("_id" => new MongoId($id));
+
+        $user = $this->collection->findOne($query);
+        if($user!=null){
+            $friendsId = $user["friends"];
+            $friendsAsObjects = array();
+            foreach($friendsId as $friend)
+            {
+                $query = array("_id" => new MongoId($friend));
+                $friendObject =  $this->collection->findOne($query);
+                if($friendObject!=null)
+                {
+                    $friendObject["_id"] = (string)$friendObject["_id"];
+                    array_push($friendsAsObjects,$friendObject);
+                }
+            }
+            return Message::SuccessMessage($friendsAsObjects);
         }else{
             return Message::ErrorMessage("User doesn't exist.");
         }
