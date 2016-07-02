@@ -150,4 +150,4 @@ Default response for all routes if something goes wrong on server
 {"Success":false,"Error":"Question deleted."}	status:200
 {"Success":false,"Error":"Question does't exist."} status:200
 ```		
-##### Description:Return question with specific id. 
+##### Description:Delete question with specific id. 
