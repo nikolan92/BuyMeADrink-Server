@@ -147,7 +147,7 @@ Default response for all routes if something goes wrong on server
 	
 ##### Possible response:
 ```sh
-{"Success":false,"Error":"Question deleted."}	status:200
+{"Success":true,"Error":"Question deleted."}	status:200
 {"Success":false,"Error":"Question does't exist."} status:200
 ```		
 ##### Description:Delete question with specific id. 
