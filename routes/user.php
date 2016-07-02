@@ -5,7 +5,7 @@ use Slim\Http\Stream;
 
 require_once("../DataLayer/UserHandler.php");
 
-//This route return user with specific id
+//This route return all users in database or message "No users in database."
 $app->get("/api/user",function (Request $request, Response $response) {
 
     $userHandler = new UserHandler();
@@ -36,7 +36,7 @@ $app->get("/api/user/friends/{id}",function (Request $request, Response $respons
     return $response->withJSON($message);
 });
 
-//Route for new user expect json data with user
+//This route adding new user in database
 $app->post("/api/user",function (Request $request, Response $response) {
 
     $user =(array) json_decode($request->getBody());
@@ -54,7 +54,7 @@ $app->post("/api/user",function (Request $request, Response $response) {
     }
 });
 
-//This route update existing user if is id correct
+//This route update existing user if id is correct
 $app->put("/api/user",function (Request $request, Response $response) {
 
     $user = (array)json_decode($request->getBody());

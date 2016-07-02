@@ -15,5 +15,5 @@ $app->post('/api/login', function (Request $request, Response $response) {
 
     $message = $userHandler->logInUser($userData["email"],$userData["password"]);
 
-	return $response->withJson($message, 201);//this automaticly change Header-Content-Type to :Content-Type →application/json;charset=utf-8
+	return $response->withJson($message, 201);//this automatically change Header-Content-Type to :Content-Type →application/json;charset=utf-8
 });

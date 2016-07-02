@@ -15,4 +15,7 @@ class MongoDBConnect
     public function getUserCollection(){
     	return new MongoCollection($this->db,"user");
     }
+    public function getQuestionCollection(){
+        return new MongoCollection($this->db,"question");
+    }
 }

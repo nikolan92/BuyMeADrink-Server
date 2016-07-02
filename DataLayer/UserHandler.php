@@ -1,6 +1,6 @@
 <?php
 
-require_once("MongoDBConnect.php");
+require_once("DataBaseConnections/MongoDBConnect.php");
 require_once("Message.php");
 
 class UserHandler {
@@ -28,7 +28,7 @@ class UserHandler {
     }
     public function getAllUsers(){
         $cursor = $this->collection->find();
-        if($cursor == null)
+        if($cursor->count()==0)
             return Message::ErrorMessage("No users in data base.");
 
         $cursor->sort(array("rating"=>1));

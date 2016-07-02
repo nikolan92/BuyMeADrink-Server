@@ -1,6 +1,5 @@
 <?php
 require_once("RedisDBConnect.php");
-require_once("Message.php");
 
 require '../vendor/predis/predis/autoload.php';
 

@@ -20,7 +20,7 @@ Default response for all routes if something goes wrong on server
 {"Success":false,"Error":"No users in data base."}	status:200
 ```
 
-##### Description: Return all users.
+##### Description: Return all users, if exists.
  
 /api/user/id
 
@@ -102,3 +102,52 @@ Default response for all routes if something goes wrong on server
 {"Success":false,"Error":"User id is not valid!"} status:200
 ```
 ##### Description:Return user friends.
+
+/api/question
+
+	Method POST
+	Request body -> JSONdata question
+	
+##### Possible response: 
+
+```sh
+{"Success":true,"Data":question in JSON} status:201
+{"Success":false,"Error":"Wrong ownerID!"} status 200
+{"Success":false,"Error":"Check request body."} status:200
+```
+##### Description:Adding new question in mongo database.
+
+/api/question
+
+	Method GET
+
+##### Possible response:
+
+```sh	
+{"Success":true,"Data":questions in JSONArray} status:200
+{"Success":false,"Error":"No questions in data base."}	status:200
+```		
+##### Description:Return all questions, if exists.
+
+/api/question/id
+
+	Method GET
+	
+##### Possible response:
+```sh
+{"Success":true,"Data":question in JSONObject} status:200
+{"Success":false,"Error":"Question doesn't exist."}	status:200
+{"Success":false,"Error":"Question id is not valid!"} status:200
+```		
+##### Description:Return question with specific id. 
+
+/api/question/id
+
+	Method DELETE
+	
+##### Possible response:
+```sh
+{"Success":false,"Error":"Question deleted."}	status:200
+{"Success":false,"Error":"Question does't exist."} status:200
+```		
+##### Description:Return question with specific id. 

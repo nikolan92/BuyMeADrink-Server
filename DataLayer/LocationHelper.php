@@ -1,5 +1,5 @@
 <?php
-require_once("RedisDBConnect.php");
+require_once("DataBaseConnections/RedisDBConnect.php");
 class LocationHelper
 {
     private $client;
@@ -22,7 +22,7 @@ class LocationHelper
         //check for friends in nearby,
         //and get all available friends location (for map update)
         $friends_in_nearby = array();
-        $friends_location = array();
+        $friends_locations = array();
         foreach($user_friends as $friend)
         {
             $friend_location = $this->getUserLocation($friend);
@@ -31,7 +31,7 @@ class LocationHelper
                 //add location of this friend in friends_location array
                 $tmp = (array)$friend_location;
                 $tmp["_id"]= $friend;
-                array_push($friends_location, $tmp);
+                array_push($friends_locations, $tmp);
                 //if this friend is in black list do nothing,
                 //otherwise check distance between user location and friend location
                 if (!$this->checkForObjectInBlackList($user_id, $friend)) {
@@ -46,7 +46,7 @@ class LocationHelper
         }
 
         //TODO:Check for questions in nearby
-        $response_data = array("friends_location"=>$friends_location,"friends_in_nearby"=>$friends_in_nearby,"questions_in_nearby"=>[]);
+        $response_data = array("friends_location"=>$friends_locations,"friends_in_nearby"=>$friends_in_nearby,"questions_in_nearby"=>[]);
         return Message::SuccessMessage($response_data);
     }
     /**
@@ -61,7 +61,7 @@ class LocationHelper
      * So user will receive only nearby object only once, in some period of time.
      * */
     private function setObjectInBlackList($user_id,$object_id){
-        $this->client->setex("user:$user_id:blackListObject:$object_id",15,true);
+        $this->client->setex("user:$user_id:blackListObject:$object_id",3600,true);
     }
     /**
      * Check for user black list.
