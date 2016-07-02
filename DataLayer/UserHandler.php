@@ -31,7 +31,7 @@ class UserHandler {
         if($cursor->count()==0)
             return Message::ErrorMessage("No users in data base.");
 
-        $cursor->sort(array("rating"=>1));
+        $cursor->sort(array("rating"=>-1));
 
         $users = array();
         foreach($cursor as $doc){
