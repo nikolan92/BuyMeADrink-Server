@@ -2,10 +2,11 @@
 
 require_once("DataBaseConnections/MongoDBConnect.php");
 require_once("Message.php");
+require_once("LocationHelper.php");
 class QuestionHandler
 {
     private $collection;
-
+    private $locationHelper;
     function __construct()
     {
         $db = new MongoDBConnect();
@@ -18,6 +19,11 @@ class QuestionHandler
         if (MongoId::isValid($ownerID)) {
             $this->collection->insert($question);
             $question["_id"] = (string)$question["_id"];
+
+            //set location of new question in redis database
+            $locationHelper = new LocationHelper();
+            $locationHelper->setQuestionLocation($question["_id"],array("lat"=>$question["lat"],"lng"=>$question["lng"]));
+
             return Message::SuccessMessage($question);
         }else{
             return Message::ErrorMessage("Wrong ownerID!");
@@ -54,6 +60,11 @@ class QuestionHandler
         }
     }
     function deleteQuestionWithSpecificID($questionID){
+
+        //Delete location from redis database
+        $locationHelper = new LocationHelper();
+        $locationHelper->deleteQuestionLocation($questionID);
+
         if($this->deleteQuestion($questionID))
         {
             return Message::SuccessMessage("Question deleted.");
