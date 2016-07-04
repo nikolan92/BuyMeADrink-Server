@@ -141,13 +141,16 @@ Default response for all routes if something goes wrong on server
 ```		
 ##### Description:Return question with specific id. 
 
-/api/question/id
+/api/question/questionId/userId/answerNum
 
 	Method DELETE
 	
 ##### Possible response:
 ```sh
 {"Success":true,"Data":"Question deleted."}	status:200
-{"Success":false,"Error":"Question does't exist."} status:200
+{"Success":false,"Error":"You can't answer on your own question!"}	status:200
+{"Success":false,"Error":"Sorry but that answer is not correct."}	status:200
+{"Success":false,"Error":"You are already try to answer on this question, try again after one day."}	status:200
+{"Success":false,"Error":"Question does't exist. Maybe someone answer on this question in meanwhile."} status:200
 ```		
-##### Description:Delete question with specific id. 
+##### Description:Delete question with specific id. If conditions are met. 

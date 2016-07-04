@@ -6,7 +6,6 @@ require_once("LocationHelper.php");
 class QuestionHandler
 {
     private $collection;
-    private $locationHelper;
     function __construct()
     {
         $db = new MongoDBConnect();
@@ -51,15 +50,46 @@ class QuestionHandler
         $query = array("_id" => new MongoId($id));
 
         $question = $this->collection->findOne($query);
-
         if($question!=null){
             $question["_id"] = (string)$question["_id"];
             return Message::SuccessMessage($question);
         }else{
-            return Message::ErrorMessage("Question does't exist.");
+            return Message::ErrorMessage("Question does't exist. Maybe someone answer on this question in meanwhile.");
         }
     }
-    function deleteQuestionWithSpecificID($questionID){
+
+    public function tryToAnswerTheQuestion($questionID,$userID,$answerNum){
+
+        $questionData = $this->getQuestionWithSpecificID($questionID);
+        $locationHelper = new LocationHelper();
+
+        //if is this user already try to answer on this question, return error message.
+        if($locationHelper->checkUserBlockList($userID,$questionID))
+            return Message::ErrorMessage("You are already try to answer on this question, try again after one day.");
+
+        if($questionData["Success"]){
+            $question = $questionData["Data"];
+            if($question["ownerID"]==$userID){
+                return Message::ErrorMessage("You can't answer on your own question!");
+            }else{
+                if($question["trueAnswer"]!=$answerNum){
+                    //this user can't answer on this question for awhile.
+                    $locationHelper->setUserBlockList($userID,$questionID);
+                    return Message::ErrorMessage("Sorry but that answer is not correct.");
+                }else{
+                    //Delete question from redis data base
+                    //TODO:raize user rank
+                    $locationHelper->deleteQuestionLocation($questionID);
+                    $this->deleteQuestionWithSpecificID($questionID);
+                    return Message::SuccessMessage("Question deleted.");
+                }
+            }
+
+        }else{
+            return $questionData;
+        }
+    }
+    private function deleteQuestionWithSpecificID($questionID){
 
         //Delete location from redis database
         $locationHelper = new LocationHelper();

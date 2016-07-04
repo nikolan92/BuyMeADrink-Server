@@ -46,8 +46,6 @@ class LocationHelper
             }
         }
 
-        //TODO: for now I reading question list from mongo db this can be speedup by using redis sets and remeber
-
         //here we have all questions ids
         $questionsIDs = $this->getQuestionsIDs();
 
@@ -60,6 +58,7 @@ class LocationHelper
                     if($this->calculateDistance($user_current_location,$questionLocation , $range)){
                         $this->setObjectInBlackList($user_id, $questionID);
                         array_push($questions_in_nearby,$questionID);
+                        //TODO:raise user rating
                     }
                 }
             }
@@ -121,7 +120,7 @@ class LocationHelper
      * @param $object_id string
      * */
     private function setObjectInBlackList($user_id,$object_id){
-        $this->client->setex("user:$user_id:blackListObject:$object_id",20,true);
+        $this->client->setex("user:$user_id:blackListObject:$object_id",18000,true);
     }
     /**
      * Check for user black list.
@@ -141,7 +140,7 @@ class LocationHelper
      * @param $question_id string
      * */
     public function setUserBlockList($user_id,$question_id){
-        $this->client->setex("user:$user_id:blockListQuestion:$question_id",3600,true);
+        $this->client->setex("user:$user_id:blockListQuestion:$question_id",20,true);
     }
     /**
      * Check for user block list.

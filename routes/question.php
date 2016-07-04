@@ -39,12 +39,15 @@ $app->post('/api/question', function (Request $request, Response $response) {
     }
 });
 //This route will delete question with specific id
-$app->delete("/api/question/{id}",function (Request $request, Response $response) {
+$app->delete("/api/question/{questionID}/{userID}/{answerNum}",function (Request $request, Response $response) {
 
-    $id = $request->getAttribute("id");
+    $questionID = $request->getAttribute("questionID");
+    $userID = $request->getAttribute("userID");
+    $answerNum = $request->getAttribute("answerNum");
 
     $questionHandler = new QuestionHandler();
-    $message = $questionHandler->deleteQuestionWithSpecificID($id);
+
+    $message = $questionHandler->tryToAnswerTheQuestion($questionID,$userID,$answerNum);
 
     return $response->withJSON($message);
 });
