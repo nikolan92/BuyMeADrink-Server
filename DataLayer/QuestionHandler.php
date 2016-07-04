@@ -72,16 +72,26 @@ class QuestionHandler
             if($question["ownerID"]==$userID){
                 return Message::ErrorMessage("You can't answer on your own question!");
             }else{
-                if($question["trueAnswer"]!=$answerNum){
-                    //this user can't answer on this question for awhile.
-                    $locationHelper->setUserBlockList($userID,$questionID);
-                    return Message::ErrorMessage("Sorry but that answer is not correct.");
-                }else{
-                    //Delete question from redis data base
-                    //TODO:raize user rank
-                    $locationHelper->deleteQuestionLocation($questionID);
-                    $this->deleteQuestionWithSpecificID($questionID);
-                    return Message::SuccessMessage("Question deleted.");
+                //get userLocation from data base
+                $userLocation = $locationHelper->getUserLocation($userID);
+                $questionLocation = array("lat"=>$question["lat"],"lng"=>$question["lng"]);
+
+                //range is fix and is 20m
+                var_dump($locationHelper->calculateDistance($userLocation,$questionLocation,8));
+                if(!$locationHelper->calculateDistance($userLocation,$questionLocation,20)){
+                    return Message::ErrorMessage("You can't answer on this question because you are too far.");
+                }else {
+                    if ($question["trueAnswer"] != $answerNum) {
+                        //this user can't answer on this question for awhile.
+                        $locationHelper->setUserBlockList($userID, $questionID);
+                        return Message::ErrorMessage("Sorry but that answer is not correct, try again after one day.");
+                    } else {
+                        //Delete question from redis data base
+                        //TODO:raise user rank
+                        $locationHelper->deleteQuestionLocation($questionID);
+                        $this->deleteQuestionWithSpecificID($questionID);
+                        return Message::SuccessMessage("Question deleted.");
+                    }
                 }
             }
 

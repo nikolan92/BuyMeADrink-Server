@@ -110,7 +110,7 @@ class LocationHelper
      * @param $user_id string
      * @return array (lat => 23.21,lng => 22.22)
      */
-    private function getUserLocation($user_id){
+    public function getUserLocation($user_id){
         return (array)json_decode($this->client->get("user:".$user_id));
     }
     /**
@@ -120,7 +120,7 @@ class LocationHelper
      * @param $object_id string
      * */
     private function setObjectInBlackList($user_id,$object_id){
-        $this->client->setex("user:$user_id:blackListObject:$object_id",18000,true);
+        $this->client->setex("user:$user_id:blackListObject:$object_id",3600,true);
     }
     /**
      * Check for user black list.
@@ -161,7 +161,7 @@ class LocationHelper
      * @param $range int
      * @return bool
      */
-    private function calculateDistance(array $latLng,array $latLng1,$range){
+    public function calculateDistance(array $latLng,array $latLng1,$range){
         $delegan = 110.25;
         $lat = $latLng["lat"];
         $lng = $latLng["lng"];
