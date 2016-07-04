@@ -3,6 +3,7 @@
 require_once("DataBaseConnections/MongoDBConnect.php");
 require_once("Message.php");
 require_once("LocationHelper.php");
+require_once("UserHandler.php");
 class QuestionHandler
 {
     private $collection;
@@ -77,8 +78,7 @@ class QuestionHandler
                 $questionLocation = array("lat"=>$question["lat"],"lng"=>$question["lng"]);
 
                 //range is fix and is 20m
-                var_dump($locationHelper->calculateDistance($userLocation,$questionLocation,8));
-                if(!$locationHelper->calculateDistance($userLocation,$questionLocation,20)){
+                if(!$locationHelper->calculateDistance($userLocation,$questionLocation,100)){
                     return Message::ErrorMessage("You can't answer on this question because you are too far.");
                 }else {
                     if ($question["trueAnswer"] != $answerNum) {
@@ -87,7 +87,20 @@ class QuestionHandler
                         return Message::ErrorMessage("Sorry but that answer is not correct, try again after one day.");
                     } else {
                         //Delete question from redis data base
-                        //TODO:raise user rank
+                        //TODO:raise user rating
+                        $userHelper = new UserHandler();
+                        $userData = $userHelper->getUserWithSpecificID($userID);
+                        //if for some user does't exist return but this should never happen.
+                        if(!$userData["Success"]){
+                            return Message::ErrorMessage("Something went wrong, sorry about that, try again later.");
+                        }
+                        $user = $userData["Data"];
+                        //raise user rating and update user
+                        var_dump($user);
+                        $user["rating"] = $user["rating"]+10;
+
+                        $userHelper->updateUser($user);
+
                         $locationHelper->deleteQuestionLocation($questionID);
                         $this->deleteQuestionWithSpecificID($questionID);
                         return Message::SuccessMessage("Question deleted.");
