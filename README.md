@@ -159,6 +159,8 @@ Default response for all routes if something goes wrong on server
 /api/question/{query}/{category}/{range}/{lat}/{lng}
 	Method GET
 
+	if range or category is not set then just put "NOT_SET"
+	
 ##### Possible response:
 ```sh
 {"Success":true,"Data":Questions in JSONArray }
