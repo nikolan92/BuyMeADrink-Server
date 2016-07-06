@@ -12,7 +12,22 @@ class QuestionHandler
         $db = new MongoDBConnect();
         $this->collection = $db->getQuestionCollection();
     }
+    function searchQuestions($query,$lat,$lng,$category,$range){
+        $finalQuery = array("question"=>(array('$regex'=> new MongoRegex("/$query/i"))));
 
+        $cursor = $this->collection->find($finalQuery);
+
+        if($cursor->count()==0){
+            return Message::ErrorMessage("There is no question does not meet the requirements.");
+        }
+
+        $questions = array();
+        foreach($cursor as $question){
+            $question["_id"] = (string)$question["_id"];
+            array_push($questions,$question);
+        }
+        return Message::SuccessMessage($questions);
+    }
     function saveQuestion($question)
     {
         $ownerID = $question["ownerID"];
@@ -78,7 +93,7 @@ class QuestionHandler
                 $questionLocation = array("lat"=>$question["lat"],"lng"=>$question["lng"]);
 
                 //range is fix and is 20m
-                if(!$locationHelper->calculateDistance($userLocation,$questionLocation,100)){
+                if(!$locationHelper->calculateDistance($userLocation,$questionLocation,20)){
                     return Message::ErrorMessage("You can't answer on this question because you are too far.");
                 }else {
                     if ($question["trueAnswer"] != $answerNum) {

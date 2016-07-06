@@ -4,6 +4,21 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require_once("../DataLayer/QuestionHandler.php");
 
+
+//This route return question with specific id
+$app->get("/api/question/{query}/{category}/{range}/{lat}/{lng}",function (Request $request, Response $response) {
+
+    $lat = $request->getAttribute("lat");
+    $lng = $request->getAttribute("lng");
+    $query = $request->getAttribute("query");
+    $category = $request->getAttribute("category");
+    $range = $request->getAttribute("range");
+
+    $questionHandler = new QuestionHandler();
+    $message = $questionHandler->searchQuestions($query,$lat,$lng,$category,$range);
+
+    return $response->withJSON($message);
+});
 //This route return all questions in database or message "No questions in database."
 $app->get("/api/question",function (Request $request, Response $response) {
 
