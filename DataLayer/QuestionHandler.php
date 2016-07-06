@@ -13,18 +13,33 @@ class QuestionHandler
         $this->collection = $db->getQuestionCollection();
     }
     function searchQuestions($query,$lat,$lng,$category,$range){
-        $finalQuery = array("question"=>(array('$regex'=> new MongoRegex("/$query/i"))));
+
+        if ($category != "NOT_SET"){
+            $finalQuery = array('$and'=>array(array("question"=>(array('$regex'=> new MongoRegex("/$query/i")))),array("category"=>(array('$regex'=> new MongoRegex("/^$category/i"))))));
+        }else{
+            $finalQuery = array("question"=>(array('$regex'=> new MongoRegex("/$query/i"))));
+        }
 
         $cursor = $this->collection->find($finalQuery);
 
         if($cursor->count()==0){
             return Message::ErrorMessage("There is no question does not meet the requirements.");
         }
-
         $questions = array();
-        foreach($cursor as $question){
-            $question["_id"] = (string)$question["_id"];
-            array_push($questions,$question);
+        if($range == "NOT_SET") {
+            foreach ($cursor as $question) {
+                $question["_id"] = (string)$question["_id"];
+                array_push($questions, $question);
+            }
+        }else{
+            $locationHelper = new LocationHelper();
+            foreach ($cursor as $question) {
+                $question["_id"] = (string)$question["_id"];
+                $questionLocation = array("lat"=>$question["lat"],"lng"=>$question["lng"]);
+                $userLocation = array("lat"=>$lat,"lng"=>$lng);
+                if($locationHelper->calculateDistance($questionLocation,$userLocation,$range))
+                    array_push($questions, $question);
+            }
         }
         return Message::SuccessMessage($questions);
     }

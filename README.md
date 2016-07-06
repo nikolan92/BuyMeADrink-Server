@@ -155,3 +155,14 @@ Default response for all routes if something goes wrong on server
 {"Success":false,"Error":"You can't answer on this question because you are too far."} status:200
 ```		
 ##### Description:Delete question with specific id. If conditions are met. 
+
+/api/question/{query}/{category}/{range}/{lat}/{lng}
+	Method GET
+
+##### Possible response:
+```sh
+{"Success":true,"Data":Questions in JSONArray }
+{"Success":false,"Error":"There is no question does not meet the requirements."}
+```		
+##### Description:Return questions if conditions are met. 
+	
