@@ -2,7 +2,7 @@
 
 Student project
 
-## Short Server Documentation API
+## Short API Documentation 
 
 
 Default response for all routes if something goes wrong on server
@@ -14,7 +14,7 @@ Default response for all routes if something goes wrong on server
 
 	Method GET
 	
-#####Possible response: 
+##### Possible response: 
 ```sh    
 {"Success":true,"Data":users in JSONArray} status:200
 {"Success":false,"Error":"No users in data base."}	status:200
@@ -26,7 +26,7 @@ Default response for all routes if something goes wrong on server
 
 	Method GET
 	
-#####Possible response: 
+##### Possible response: 
 ```sh    
 {"Success":true,"Data":user in JSON} status:200
 {"Success":false,"Error":"User doesn't exist."}	status:200
